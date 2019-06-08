@@ -1,1 +1,41 @@
 @import 'reset-css';
+@import 'fonts';
+
+$font: 'Roboto', Arial, sans-serif;
+
+html {
+  font: 400 16px $font;
+}
+
+#header {
+  padding-bottom: 96px;
+}
+
+h2 {
+  font: 600 36px $font;
+  margin-bottom: 24px;
+}
+
+h5 {
+  font: 400 16px $font;
+  margin-bottom: 14px;
+  color: rgb(142, 155, 168);
+}
+
+hr {
+  padding: 0;
+  margin: 24px 0;
+  border: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.sketch {
+  width: 800px;
+  margin: 0 auto;
+}
