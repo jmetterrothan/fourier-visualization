@@ -8,7 +8,7 @@
         <header id="header">
             <div class="wrapper">
                 <h2>Projet traitement du signal</h2>
-                <h5>Jérémie Metter-Rothan IMAC3</h5>
+                <h5>Jérémie Metter-Rothan - IMAC3</h5>
             </div>
         </header>
         <main>
@@ -17,6 +17,22 @@
                     <h4>#1 Visualisation des séries de Fourier</h4>
                 </div>
                 <div id="sketch1" class="sketch"></div>
+                <div class="wrapper">
+                    <div class="options">
+                        <div class="group">
+                            <label>Step</label>
+                            <input type="number" min="0.001" step="0.001" value="0.01" name="step" />
+                        </div>
+                        <div class="group">
+                            <label>Iterations</label>
+                            <input type="number" min="1" step="1" value="20" name="iterations" />
+                        </div>
+                        <div class="group">
+                            <label>Wave</label>
+                            <select name="waveType"></select>
+                        </div>
+                    </div>
+                </div>
                 <div id="sketch2" class="sketch"></div>
             </section>
         </main>

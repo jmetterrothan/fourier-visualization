@@ -1,5 +1,4 @@
-const SK_WIDTH = window.innerWidth;
-const SK_HEIGHT = 400;
+// @ts-nocheck
 
 let t = 0;
 
@@ -7,11 +6,32 @@ const wave = [];
 
 // fourier series
 
-const colors = [[255, 50, 0], [255, 255, 50], [50, 255, 50], [50, 255, 255], [50, 50, 255]];
+export const waveTypes = {
+  pulse: () => 0.1,
+  square: n => 4 / (n * Math.PI),
+  sawtooth: () => 0, // TODO: fix
+  triangle: (n) => {
+    if (!(n % 2)) return 0;
+    return (n % 4 === 1 ? 1 : -1) / (n * n);
+  },
+};
 
-const sketch1 = (ctx) => {
+const colors = [
+  [252, 92, 101],
+  [253, 150, 68],
+  [254, 211, 48],
+  [38, 222, 129],
+  [43, 203, 186],
+  [69, 170, 242],
+  [75, 123, 236],
+  [165, 94, 234],
+  [209, 216, 224],
+  [119, 140, 163],
+];
+
+const sketch1 = options => (ctx) => {
   ctx.setup = () => {
-    ctx.createCanvas(SK_WIDTH, SK_HEIGHT);
+    ctx.createCanvas(options.width, options.height);
   };
 
   ctx.draw = () => {
@@ -23,12 +43,12 @@ const sketch1 = (ctx) => {
     let py = 0;
 
     // center coord of the initial circle
-    ctx.translate(350, SK_HEIGHT / 2);
+    ctx.translate(350, options.height / 2);
 
-    for (let i = 0; i < 50; i += 1) {
+    for (let i = 0; i < options.iterations; i += 1) {
       const n = i * 2 + 1;
 
-      const rad = 100 * (4 / (n * Math.PI));
+      const rad = 100 * waveTypes[options.waveType](n);
 
       // save previous position
       px = x;
@@ -42,7 +62,7 @@ const sketch1 = (ctx) => {
 
       // circle
       ctx.stroke(r, v, b, 128);
-      ctx.strokeWeight(1);
+      ctx.strokeWeight(2);
       ctx.noFill();
       ctx.ellipse(px, py, rad * 2);
 
@@ -73,7 +93,7 @@ const sketch1 = (ctx) => {
     }
     ctx.endShape();
 
-    t -= 0.01;
+    t -= options.step;
   };
 };
 

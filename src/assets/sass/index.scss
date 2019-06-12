@@ -3,6 +3,10 @@
 
 $font: 'Roboto', Arial, sans-serif;
 
+*, *:after, *:before {
+  box-sizing: border-box;
+}
+
 html {
   font: 400 16px $font;
 }
@@ -13,20 +17,20 @@ html {
 }
 
 h2 {
-  font: 600 36px $font;
+  font: 600 2rem $font;
   margin-bottom: 16px;
 }
 
 h4 {
-  font: 600 20px $font;
+  font: 600 1.25rem $font;
   margin-bottom: 16px;
-  color: #505050;
+  color: #2c78b6;
 }
 
 h5 {
-  font: 400 16px $font;
+  font: 600 1rem $font;
   margin-bottom: 16px;
-  color: rgb(142, 155, 168);
+  color: #8e9ba8;
 }
 
 hr {
@@ -44,4 +48,48 @@ hr {
 
 .sketch {
   margin: 0 auto;
+  background: #000;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  margin: 16px -16px;
+}
+
+.group {
+  width: 100%;
+  max-width: 150px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 16px;
+  margin-bottom: 16px;
+}
+
+.group label {
+  margin-bottom: 8px;
+  color: #8e9ba8;
+  font: 400 1rem $font;
+}
+
+input, select {
+  display: block;
+  width: 100%;
+  appearance: none;
+  border: 1px solid #acacac;
+  margin: 0;
+  padding: 0 8px;
+  height: 24px;
+  line-height: 24px;
+  font: 400 1rem $font;
+}
+
+@media only screen and (min-width: 1024px) {
+  .options {
+    flex-direction: row;
+  }
+
+  .group {
+    margin-bottom: 0;
+  }
 }
