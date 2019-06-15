@@ -82,6 +82,11 @@ const sketch1 = options => (ctx) => {
       wave.pop();
     }
 
+    // connected last circle center to the wave line
+    ctx.stroke(255);
+    ctx.strokeWeight(1);
+    ctx.line(x, y, waveOffsetX, wave[0]);
+
     // draw wave
 
     ctx.beginShape();
