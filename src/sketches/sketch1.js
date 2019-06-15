@@ -1,37 +1,23 @@
 // @ts-nocheck
 
+import { waveTypes, colors } from '../utility';
+
 let t = 0;
 
 const wave = [];
 
 // fourier series
 
-export const waveTypes = {
-  pulse: () => 0.1,
-  square: n => 4 / (n * Math.PI),
-  sawtooth: () => 0, // TODO: fix
-  triangle: (n) => {
-    if (!(n % 2)) return 0;
-    return (n % 4 === 1 ? 1 : -1) / (n * n);
-  },
-};
-
-const colors = [
-  [252, 92, 101],
-  [253, 150, 68],
-  [254, 211, 48],
-  [38, 222, 129],
-  [43, 203, 186],
-  [69, 170, 242],
-  [75, 123, 236],
-  [165, 94, 234],
-  [209, 216, 224],
-  [119, 140, 163],
-];
-
 const sketch1 = options => (ctx) => {
   ctx.setup = () => {
-    ctx.createCanvas(options.width, options.height);
+    ctx.createCanvas(options.width(), options.height());
+  };
+
+  ctx.windowResized = () => {
+    const w = options.width();
+    const h = options.height();
+
+    ctx.resizeCanvas(w, h);
   };
 
   ctx.draw = () => {
@@ -42,8 +28,16 @@ const sketch1 = options => (ctx) => {
     let px = 0;
     let py = 0;
 
-    // center coord of the initial circle
-    ctx.translate(350, options.height / 2);
+    const maxRadius = Math.max(100 * waveTypes[options.waveType](1), 100);
+
+    const previewOffsetX = maxRadius * 2.5;
+    const waveOffsetX = maxRadius * 2.5;
+
+    // number of points displayed
+    const maxWaveSamples = ctx.width - previewOffsetX - waveOffsetX;
+
+    // place cursor in the center of the initial circle
+    ctx.translate(previewOffsetX, ctx.height / 2);
 
     for (let i = 0; i < options.iterations; i += 1) {
       const n = i * 2 + 1;
@@ -78,7 +72,7 @@ const sketch1 = options => (ctx) => {
 
     wave.unshift(y);
 
-    if (wave.length > 2048) {
+    if (wave.length > maxWaveSamples) {
       wave.pop();
     }
 
@@ -94,7 +88,7 @@ const sketch1 = options => (ctx) => {
     ctx.stroke(255);
     ctx.noFill();
     for (let i = 0, m = wave.length; i < m; i += 1) {
-      ctx.vertex(i, wave[i]);
+      ctx.vertex(i + waveOffsetX, wave[i]);
     }
     ctx.endShape();
 

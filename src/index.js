@@ -3,7 +3,8 @@
 import * as P5 from 'p5';
 import 'babel-polyfill';
 
-import sketch1, { waveTypes } from './sketches/sketch1';
+import { waveTypes } from './utility';
+import sketch1 from './sketches/sketch1';
 
 const $sketch1 = document.getElementById('sketch1');
 const $step = document.querySelector('input[name="step"]');
@@ -21,8 +22,8 @@ Object.keys(waveTypes).forEach((waveType) => {
 const options = {
   step: Number($step.value),
   iterations: Number($iterations.value),
-  width: window.innerWidth,
-  height: 400,
+  width: () => window.innerWidth,
+  height: () => 400,
   waveType: $waveType.value,
 };
 
