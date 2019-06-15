@@ -12,8 +12,10 @@ html {
 }
 
 #header {
-  padding-top: 96px;
-  padding-bottom: 32px;
+  padding-top: 64px;
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid #dcdee2;
 }
 
 h2 {
@@ -42,19 +44,21 @@ hr {
 
 .wrapper {
   width: 90%;
-  max-width: 960px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
 .sketch {
   margin: 0 auto;
   background: #000;
+  overflow: hidden;
 }
 
 .options {
   display: flex;
   flex-direction: column;
   margin: 16px -16px;
+  margin-bottom: 32px;
 }
 
 .group {
@@ -84,12 +88,28 @@ input, select {
   font: 400 1rem $font;
 }
 
-@media only screen and (min-width: 1024px) {
-  .options {
-    flex-direction: row;
-  }
+.section {
+  margin-bottom: 64px;
+}
 
-  .group {
-    margin-bottom: 0;
+.article {
+  margin-bottom: 32px;
+  
+  p {
+    font: 400 1rem $font;
+    line-height: 1.5rem;
+    margin-bottom: 16px;
   }
 }
+
+.var {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  background: #f1f1f1;
+  color: #505050;
+  border-radius: 6px;
+  min-width: 32px;
+  text-align: center;
+}
+
+@import 'responsive';

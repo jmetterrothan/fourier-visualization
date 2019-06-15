@@ -15,23 +15,35 @@
             <section class="section">
                 <div class="wrapper">
                     <h4>#1 Visualisation des séries de Fourier</h4>
+                    <article class="article">
+                        <p>
+                            Une fonction périodique complexe peut être décomposée en une somme de fonctions sinusoïdales plus simples et forment ce qu'on appelle une série de Fourier. La visualisation ci-dessous permet de montrer de façon interactive la
+                            superposition de plusieurs fonctions et comment leur somme permet de converger vers la forme du signal sélectionné.
+                        </p>
+                    </article>
                 </div>
                 <div id="sketch1" class="sketch"></div>
                 <div class="wrapper">
                     <div class="options">
                         <div class="group">
-                            <label>Step</label>
+                            <label>signal</label>
+                            <select name="waveType"></select>
+                        </div>
+                        <div class="group">
+                            <label>f</label>
                             <input type="number" min="0.001" step="0.001" value="0.01" name="step" />
                         </div>
                         <div class="group">
-                            <label>Iterations</label>
-                            <input type="number" min="1" step="1" value="20" name="iterations" />
-                        </div>
-                        <div class="group">
-                            <label>Wave</label>
-                            <select name="waveType"></select>
+                            <label>n</label>
+                            <input type="number" min="1" step="1" value="10" name="iterations" />
                         </div>
                     </div>
+                </div>
+                <div class="wrapper">
+                    <article class="article">
+                        <p>La valeur <span class="var">f</span> est la fréquence du signal.</p>
+                        <p>La valeur <span class="var">n</span> représente les n premières sommes partielles de Fourier. C'est le nombre de coefficients de Fourier qui seront calculés pour approximer le signal.</p>
+                    </article>
                 </div>
                 <div id="sketch2" class="sketch"></div>
             </section>
