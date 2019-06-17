@@ -8,7 +8,6 @@ const SRC = path.resolve('./src');
 module.exports = {
   entry: {
     bundle: [path.join(SRC, 'index.js')],
-    style: [path.join(SRC, 'assets', 'sass', 'index.scss')],
   },
   resolve: {
     modules: ['node_modules', 'src'],

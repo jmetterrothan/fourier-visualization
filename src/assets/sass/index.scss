@@ -1,7 +1,9 @@
 @import 'reset-css';
 @import 'fonts';
+@import '../fonts/fontawesome-pro/css/all.css';
 
 $font: 'Roboto', Arial, sans-serif;
+$tonic: #2c78b6;
 
 *, *:after, *:before {
   box-sizing: border-box;
@@ -11,28 +13,34 @@ html {
   font: 400 16px $font;
 }
 
+main {
+  padding-top: 96px;
+  background: #f0f2f5;
+}
+
 #header {
   padding-top: 64px;
-  padding-bottom: 16px;
-  margin-bottom: 24px;
-  border-bottom: 1px solid #dcdee2;
+  padding-bottom: 24px;
+  background: #cdd4df;
 }
 
 h2 {
-  font: 600 2rem $font;
+  font: 600 3rem $font;
   margin-bottom: 16px;
+  color: #2c3c61;
+  text-align: center;
 }
 
 h4 {
-  font: 600 1.25rem $font;
-  margin-bottom: 16px;
-  color: #2c78b6;
+  font: 600 1.5rem $font;
+  margin-bottom: 32px;
+  color: $tonic;
 }
 
 h5 {
-  font: 600 1rem $font;
-  margin-bottom: 16px;
-  color: #8e9ba8;
+  font: 600 1.15rem $font;
+  color: #6b7fa1;
+  text-align: center;
 }
 
 hr {
@@ -49,6 +57,7 @@ hr {
 }
 
 .sketch {
+  position: relative;
   margin: 0 auto;
   background: #000;
   overflow: hidden;
@@ -57,7 +66,8 @@ hr {
 .options {
   display: flex;
   flex-direction: column;
-  margin: 16px -16px;
+  margin: 0 -16px;
+  margin-top: 32px;
   margin-bottom: 32px;
 }
 
@@ -72,7 +82,7 @@ hr {
 
 .group label {
   margin-bottom: 8px;
-  color: #8e9ba8;
+  color: #59697a;
   font: 400 1rem $font;
 }
 
@@ -80,16 +90,20 @@ input, select {
   display: block;
   width: 100%;
   appearance: none;
-  border: 1px solid #acacac;
+  outline: none;
+  border: 2px solid #59697a;
+  color: #364f69;
+  background: transparent;
   margin: 0;
   padding: 0 8px;
-  height: 24px;
-  line-height: 24px;
+  height: 36px;
+  line-height: 36px;
+  border-radius: 4px;
   font: 400 1rem $font;
 }
 
 .section {
-  margin-bottom: 64px;
+  margin-bottom: 192px;
 }
 
 .article {
@@ -105,11 +119,110 @@ input, select {
 .var {
   display: inline-block;
   padding: 0.2rem 0.5rem;
-  background: #f1f1f1;
-  color: #505050;
+  margin: 0 0.1rem;
+  background: rgba(117, 164, 218, 0.1);
+  color: $tonic;
+  font-weight: 700;
   border-radius: 6px;
   min-width: 32px;
   text-align: center;
+}
+
+.hint {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  color: #8d9eb1;
+  padding: 1rem;
+  font: 400 0.8rem $font;
+
+  .icon {
+    margin-right: 0.25rem;
+    display: none;
+  }
+}
+
+.record-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.record-button {
+  appearance: none;
+  outline: none;
+  background: none;
+  font: 700 1rem $font;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 6px solid transparent;
+  cursor: pointer;
+
+  .icon {
+    font-size: 2.25rem;
+
+    &--on {
+      display: block;
+    }
+    &--off {
+      display: none;
+    }
+  }
+
+  &.idle {
+    color: #afbdcc;
+    border-color: #afbdcc;
+    transition: all ease 200ms;
+
+    &:hover {
+      color: #8695a5;
+      border-color: #8695a5;
+      transition: all ease 200ms;
+    }
+  }
+  
+  &.busy {
+    color: $tonic;
+    border-color: $tonic;
+    animation: pulse cubic-bezier(.17,.67,.83,.67) infinite 500ms alternate;
+
+    &:hover {
+      .icon {
+        &--on {
+          display: none;
+        }
+        &--off {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+@keyframes pulse {
+  from {
+    box-shadow: 0 0 0 0 transparent, 0 0 0 16px transparent;
+  }
+  to {
+    box-shadow: 0 0 0 16px rgba($tonic, 0.2), 0 0 0 25.88px rgba($tonic, 0.05);
+  }
+}
+
+.record-hint {
+  color: #afbdcc;
+  padding: 1rem;
+  font: 400 1.15rem $font;
+  text-align: center;
+  margin-top: 16px;
 }
 
 @import 'responsive';
