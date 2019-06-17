@@ -31,15 +31,15 @@ const Recorder = ($b, $h) => {
   const $btn = $b;
   const $hint = $h;
 
-  let recorder;
+  let manager;
 
   $btn.classList.add('idle');
   $hint.innerHTML = "Appuyer pour commencer l'enregistrement";
 
   return {
-    isRecording: () => !!recorder,
+    isRecording: () => manager && manager.recorder.state === 'recording',
     start: async () => {
-      if (recorder) {
+      if (manager) {
         return;
       }
 
@@ -47,11 +47,11 @@ const Recorder = ($b, $h) => {
       $btn.classList.add('busy');
       $hint.innerHTML = "Appuyer pour terminer l'enregistrement";
 
-      recorder = await record();
-      recorder.start();
+      manager = await record();
+      manager.start();
     },
     stop: async () => {
-      if (!recorder) {
+      if (!manager) {
         return null;
       }
 
@@ -59,8 +59,8 @@ const Recorder = ($b, $h) => {
       $btn.classList.remove('busy');
       $hint.innerHTML = "Appuyer pour commencer l'enregistrement";
 
-      const sound = await recorder.stop();
-      recorder = null;
+      const sound = await manager.stop();
+      manager = null;
 
       return sound;
     },
@@ -71,9 +71,30 @@ const $record = document.getElementById('record');
 const $hint = document.getElementById('record-hint');
 
 const rec = Recorder($record, $hint);
-$record.addEventListener('click', async (e) => {
-  e.preventDefault();
 
+// mobile
+
+const start = async () => {
+  if (!rec.isRecording()) {
+    rec.start();
+  }
+};
+
+const end = async () => {
+  if (rec.isRecording()) {
+    const sound = await rec.stop();
+    if (sound) {
+      sound.play();
+    }
+  }
+};
+
+$record.addEventListener('touchstart', start);
+$record.addEventListener('touchend', end);
+
+// pc
+
+const toggle = async () => {
   if (!rec.isRecording()) {
     rec.start();
   } else {
@@ -82,4 +103,6 @@ $record.addEventListener('click', async (e) => {
       sound.play();
     }
   }
-});
+};
+
+$record.addEventListener('click', toggle);

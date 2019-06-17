@@ -28,7 +28,7 @@ const record = async () => {
       recorder.stop();
     });
 
-    return { start, stop };
+    return { start, stop, recorder };
   } catch (e) {
     return null;
   }
