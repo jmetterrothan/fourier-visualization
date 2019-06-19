@@ -24,7 +24,7 @@ const sketch1 = (ctx) => {
     step: Number($step.value),
     iterations: Number($iterations.value),
     width: () => window.innerWidth,
-    height: () => 500,
+    height: () => 550,
     waveType: $waveType.value,
   };
 

@@ -17,16 +17,22 @@ const rec = Recorder($record, $hint);
 
 const toggle = async () => {
   if (!rec.isRecording()) {
-    rec.start();
-    changeSound.next({ type: 'RECORD_START', payload: {} });
+    const result = await rec.start();
+
+    if (result) {
+      changeSound.next({ type: 'RECORD_START', payload: {} });
+      return;
+    }
   } else {
     const soundUrl = await rec.stop();
+
     if (soundUrl) {
       changeSound.next({ type: 'RECORD_END', payload: { url: soundUrl } });
-    } else {
-      changeSound.next({ type: 'RECORD_FAILED', payload: {} });
+      return;
     }
   }
+
+  changeSound.next({ type: 'RECORD_FAILED', payload: {} });
 };
 
 $fallbackSound.addEventListener('click', () => {

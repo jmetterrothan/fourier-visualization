@@ -43,28 +43,44 @@ export const Recorder = ($b, $h) => {
   $btn.classList.add('idle');
   $hint.innerHTML = "Appuyer pour commencer l'enregistrement";
 
+  const setRecording = (b) => {
+    if (b) {
+      $btn.classList.remove('idle');
+      $btn.classList.add('busy');
+      $hint.innerHTML = "Appuyer pour terminer l'enregistrement";
+    } else {
+      $btn.classList.add('idle');
+      $btn.classList.remove('busy');
+      $hint.innerHTML = "Appuyer pour commencer l'enregistrement";
+    }
+  };
+
   return {
     isRecording: () => manager && manager.recorder.state === 'recording',
     start: async () => {
       if (manager) {
-        return;
+        return false;
       }
 
-      $btn.classList.remove('idle');
-      $btn.classList.add('busy');
-      $hint.innerHTML = "Appuyer pour terminer l'enregistrement";
+      setRecording(true);
 
       manager = await record();
+
+      if (!manager) {
+        setRecording(false);
+
+        return false;
+      }
+
       manager.start();
+      return true;
     },
     stop: async () => {
       if (!manager) {
         return null;
       }
 
-      $btn.classList.add('idle');
-      $btn.classList.remove('busy');
-      $hint.innerHTML = "Appuyer pour commencer l'enregistrement";
+      setRecording(false);
 
       const sound = await manager.stop();
       manager = null;

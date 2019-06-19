@@ -115,7 +115,7 @@ const sketch2 = changeSound => (ctx) => {
   ctx.draw = () => {
     ctx.background(10, 10, 20);
 
-    if (!ready) {
+    if (!ready || loading) {
       return;
     }
 
