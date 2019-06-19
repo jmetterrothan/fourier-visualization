@@ -127,11 +127,11 @@ const sketch2 = changeSound => (ctx) => {
     ctx.noStroke();
     ctx.fill(r, v, b, 64);
 
-    for (let i = 0; i < spectrum.length; i += 1) {
-      const x = ctx.map(i, 0, spectrum.length, 0, ctx.width); // map value within bounds
+    for (let i = 0, n = spectrum.length; i < n; i += 1) {
+      const x = ctx.map(i, 0, n, 0, ctx.width); // map value within bounds
       const h = -ctx.height / 2 + ctx.map(spectrum[i], 0, 255, ctx.height / 2, 0);
 
-      ctx.rect(x + 2, ctx.height, ctx.width / spectrum.length - 4, h);
+      ctx.rect(x + 2, ctx.height, ctx.width / n - 4, h);
     }
 
     // wave
@@ -142,8 +142,8 @@ const sketch2 = changeSound => (ctx) => {
     ctx.stroke(r, v, b);
     ctx.strokeWeight(2);
 
-    for (let i = 0; i < waveform.length; i += 1) {
-      const x = ctx.map(i, 0, waveform.length, 0, ctx.width);
+    for (let i = 0, n = waveform.length; i < n; i += 1) {
+      const x = ctx.map(i, 0, n, 0, ctx.width);
       const y = ctx.map(waveform[i], -1, 1, 0, ctx.height / 2);
       ctx.vertex(x, y + ctx.height / 2);
     }

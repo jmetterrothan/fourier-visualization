@@ -1,5 +1,6 @@
 // @ts-nocheck
 
+// record API
 const record = async () => {
   const chunks = [];
   let recorder;
@@ -34,6 +35,7 @@ const record = async () => {
   }
 };
 
+// record with UI
 export const Recorder = ($b, $h) => {
   const $btn = $b;
   const $hint = $h;
