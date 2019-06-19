@@ -55,6 +55,18 @@ module.exports = {
         ],
       },
       {
+        test: /\.(mp3|mp4)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'sound/',
+            },
+          },
+        ],
+      },
+      {
         test: /\.(woff(2)?|ttf|eot|otf)(\?v=\d+\.\d+\.\d+)?$/,
         use: [
           {

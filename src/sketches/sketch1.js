@@ -1,6 +1,4 @@
 // @ts-nocheck
-import P5 from 'p5';
-
 import { waveTypes, colors } from '../utility';
 
 // fourier series
@@ -165,4 +163,4 @@ const sketch1 = (ctx) => {
   };
 };
 
-new P5(sketch1, document.getElementById('sketch1'));
+export default sketch1;
