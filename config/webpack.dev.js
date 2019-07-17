@@ -10,7 +10,7 @@ module.exports = merge(baseConfig, {
     filename: '[name].[chunkhash].js',
   },
   devServer: {
-    port: 8000,
+    port: 8080,
     historyApiFallback: true,
     watchContentBase: false,
     open: true,

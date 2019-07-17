@@ -7,48 +7,96 @@
     <body>
         <header id="header">
             <div class="wrapper">
-                <h2>Projet traitement du signal</h2>
-                <h5>Jérémie Metter-Rothan - IMAC3</h5>
+                <h2 class="title">Projet traitement du signal</h2>
+                <h5 class="title">Jérémie Metter-Rothan - IMAC3</h5>
+                <img class="pic" width="200" src="http://www.hervekabla.com/wordpress/wp-content/uploads/2013/11/joseph-fourier.jpg" />
             </div>
         </header>
         <main>
             <section class="section">
                 <div class="wrapper">
-                    <h4>#1 Visualisation des séries de Fourier</h4>
+                    <h4 class="title">#1 Visualisation des séries de Fourier</h4>
                     <article class="article">
+                        <h5 class="title">Fonctions périodiques</h5>
+                        <figure class="figure">
+                            <img style="filter: invert(1) grayscale(1)" width="500" src="./src/assets/images/graph1a.png" src="Fonction périodique" />
+                            <figcaption>
+                                Exemple de fonction périodique <math><mrow><mi>sin</mi><mfenced><mi>x</mi></mfenced></mrow></math> de période <math><mn>2π</mn></math>.
+                            </figcaption>
+                        </figure>
                         <p>
-                            Une fonction périodique complexe peut être décomposée en une somme de fonctions sinusoïdales plus simples et forment ce qu'on appelle le développement en série de Fourier. La visualisation ci-dessous permet de montrer de façon
-                            interactive la superposition de plusieurs fonctions et comment leur somme permet de converger vers la forme du signal sélectionné.
+                            Une fonction périodique complexe peut être décomposée en une somme de fonctions sinusoïdales plus simples et forment ce qu'on appelle le développement en série de Fourier.
+                        <p>
+                        <h5 class="title mt-6">Coefficients de Fourier</h5>
+                        <p>Grâce au calcul des coefficients de Fourier on va pourvoir effectuer un développement en série de Fourier.</p>
+                        <h5 class="title mt-6">Théorème de Dirichlet</h5>
+                        <p class="mt-4">
+                            Développement en série de Fourier de f noté :
+                            <div class="p-1">
+                                <math>
+                                    <mi>S</mi><mfenced><mi>x</mi></mfenced>
+                                    <mo>=</mo>
+                                    <msub><mi>a</mi><mn>0</mn></msub>
+                                    <mo>+</mo>
+                                    <munderover>
+                                        <mo>&sum;</mo>
+                                        <mrow>
+                                            <mi>n</mi>
+                                            <mo>=</mo>
+                                            <mn>1</mn>
+                                        </mrow>
+                                        <mi>+&infin;</mi>
+                                    </munderover>
+                                    <mrow><msub><mi>a</mi><mi>n</mi></msub><mi>cos</mi><mfenced><mi>n𝜔x</mi></mfenced></mrow>
+                                    <mo>+</mo>
+                                    <mrow><msub><mi>b</mi><mi>n</mi></msub><mi>sin</mi><mfenced><mi>n𝜔x</mi></mfenced></mrow>
+                    
+                                </math>
+                            </div>
                         </p>
-                    </article>
-                </div>
-                <div id="sketch1" class="sketch"></div>
-                <div class="wrapper">
-                    <div class="options">
-                        <div class="group">
-                            <label>signal</label>
-                            <select name="waveType"></select>
+                        <h5 class="title pt-6">Sommes partielles</h5>
+                        <p>
+                            La visualisation ci-dessous permet de montrer de façon interactive comment en calculant une série de sommes partielles successivement on converger 
+                            vers la forme du signal sélectionné. Il suffit d'incrémenter la valeur <span class="var">n</span> dans le champ ci-dessous pour améliorer la précision de l'approximation et observer la convergence.
+                        </p>
+
+                        <div class="options pt-2">
+                            <div class="group">
+                                <label>signal</label>
+                                <select name="waveType"></select>
+                            </div>
+                            <div class="group">
+                                <label>f</label>
+                                <input type="number" min="0.001" step="0.001" value="0.01" name="step" />
+                            </div>
+                            <div class="group">
+                                <label>n</label>
+                                <input type="number" min="1" step="1" value="6" name="iterations" />
+                            </div>
                         </div>
-                        <div class="group">
-                            <label>f</label>
-                            <input type="number" min="0.001" step="0.001" value="0.01" name="step" />
-                        </div>
-                        <div class="group">
-                            <label>n</label>
-                            <input type="number" min="1" step="1" value="10" name="iterations" />
-                        </div>
-                    </div>
-                </div>
-                <div class="wrapper">
-                    <article class="article">
-                        <p>La valeur <span class="var">f</span> est la fréquence du signal.</p>
-                        <p>La valeur <span class="var">n</span> représente les n premières sommes partielles de Fourier. C'est le nombre de coefficients de Fourier qui seront calculés pour approximer le signal.</p>
                     </article>
                 </div>
             </section>
+
+            <div id="sketch1" class="sketch"></div>
+        
             <section class="section">
                 <div class="wrapper">
-                    <h4>#2 Application de la transformée de Fourier</h4>
+                    <p>La valeur <span class="var">f</span> est la fréquence du signal et la valeur <span class="var">n</span> représente les n premières sommes partielles de Fourier. C'est le nombre de coefficients de Fourier qui seront calculés pour approximer le signal.</p>
+                    
+                    <article class="article">
+                        <h5 class="title pt-4">Phénomène de Gibbs</h5>
+                        <p>
+                            La visualisation ci-dessus permet d'observer également le phénomène de Gibbs par exemple avec le signal carré en passant successivement la valeur de <span class="var">n</span> de 5, à 20 puis à 50.
+                            Ces artefacts sont toujours présent au niveaux des discontinuités du signal.
+                        </p>
+                    </article>
+                </div>
+                
+            </section>
+            <section class="section">
+                <div class="wrapper">
+                    <h4 class="title">#2 Application de la transformée de Fourier</h4>
                     <article class="article">
                         <p>La transformée de Fourier permet de faire de l'analyse fréquentielle ou spectrale utilisée dans de nombreux domaines.</p>
                     </article>
@@ -78,5 +126,6 @@
                 </div>
             </section>
         </main>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
     </body>
 </html>
