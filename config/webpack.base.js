@@ -22,6 +22,10 @@ module.exports = {
         use: [{ loader: 'babel-loader' }, { loader: 'eslint-loader' }],
       },
       {
+        test: /\.html$/,
+        loader: 'html-loader',
+      },
+      {
         test: /\.(css|scss|sass)$/,
         use: [
           'style-loader',

@@ -9,6 +9,14 @@ $tonic: #2c78b6;
   box-sizing: border-box;
 }
 
+a {
+  color: $tonic;
+
+  &:hover {
+    color: darken($tonic, 5%);
+  }
+}
+
 @each $i in (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12) {
   $size : $i * 8px;
 
@@ -370,5 +378,21 @@ p {
     margin-bottom: 32px;
   }
 }
+
+.imagecomp {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-gap: 16px;
+
+  img {
+    width: 100%;
+    height: 500px;
+    object-position: 100%;
+    object-fit: cover;
+  }
+}
+
 
 @import 'responsive';

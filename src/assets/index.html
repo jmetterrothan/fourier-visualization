@@ -9,7 +9,8 @@
             <div class="wrapper">
                 <h2 class="title">Projet traitement du signal</h2>
                 <h5 class="title">Jérémie Metter-Rothan - IMAC3</h5>
-                <img class="pic" width="200" src="http://www.hervekabla.com/wordpress/wp-content/uploads/2013/11/joseph-fourier.jpg" />
+                <p><a class="link" href="http://projects.metter-rothan.fr/imac3/ts/sources.zip" download="sources.zip">Télécharger le code source</a> (22 mo)</p>
+                <img class="pic" width="200" src="./images/joseph-fourier.jpg" alt="Joseph Fourier" />
             </div>
         </header>
         <main>
@@ -19,27 +20,25 @@
                     <article class="article">
                         <h5 class="title">Fonctions périodiques</h5>
                         <figure class="figure">
-                            <img style="filter: invert(1) grayscale(1)" width="500" src="./src/assets/images/graph1a.png" src="Fonction périodique" />
+                            <img style="filter: invert(1) grayscale(1)" width="500" src="./images/graph1a.png" alt="Fonction périodique" />
                             <figcaption>
                                 Exemple de fonction périodique <math><mrow><mi>sin</mi><mfenced><mi>x</mi></mfenced></mrow></math> de période <math><mn>2π</mn></math>.
                             </figcaption>
                         </figure>
                         <p>
-                            Une fonction périodique complexe peut être décomposée en une somme de fonctions sinusoïdales plus simples et forment ce qu'on appelle le développement en série de Fourier.
+                            Une fonction périodique complexe peut être décomposée en une somme de fonctions sinusoïdales plus simples (fondamentale et harmoniques) et forment ce qu'on appelle le développement en série de Fourier.
                         <p>
-                        <h5 class="title mt-6">Coefficients de Fourier</h5>
-                        <p>Grâce au calcul des coefficients de Fourier on va pourvoir effectuer un développement en série de Fourier.</p>
-                        <h5 class="title mt-6">Théorème de Dirichlet</h5>
-                        <p class="mt-4">
-                            Développement en série de Fourier de f noté :
+                        <p class="mt-2">
+                            Définition du développement en série de Fourier de <math><mi>f</mi></math> noté :
                             <div class="p-1">
-                                <math>
+                                <math display="block">
                                     <mi>S</mi><mfenced><mi>x</mi></mfenced>
                                     <mo>=</mo>
                                     <msub><mi>a</mi><mn>0</mn></msub>
                                     <mo>+</mo>
+        
                                     <munderover>
-                                        <mo>&sum;</mo>
+                                        <mo>∑</mo>
                                         <mrow>
                                             <mi>n</mi>
                                             <mo>=</mo>
@@ -47,20 +46,68 @@
                                         </mrow>
                                         <mi>+&infin;</mi>
                                     </munderover>
-                                    <mrow><msub><mi>a</mi><mi>n</mi></msub><mi>cos</mi><mfenced><mi>n𝜔x</mi></mfenced></mrow>
-                                    <mo>+</mo>
-                                    <mrow><msub><mi>b</mi><mi>n</mi></msub><mi>sin</mi><mfenced><mi>n𝜔x</mi></mfenced></mrow>
-                    
+                                    <mrow>
+                                        <mrow>
+                                            <msub>
+                                                <mi>a</mi>
+                                                <mi>n</mi>
+                                            </msub>
+                                            <mi>cos</mi>
+                                            <mfenced>
+                                                <mi>n&omega;x</mi>
+                                            </mfenced>
+                                        </mrow>
+                                        <mo style="margin: 0 4px;">+</mo>
+                                        <mrow>
+                                            <msub>
+                                                <mi>b</mi>
+                                                <mi>n</mi>
+                                            </msub>
+                                            <mi>sin</mi>
+                                            <mfenced>
+                                                <mi>n&omega;x</mi>
+                                            </mfenced>
+                                        </mrow>
+                                    </mrow>
                                 </math>
                             </div>
                         </p>
+                        <p>Grâce au calcul des coefficients de Fourier 
+                            <math>
+                                <msub>
+                                    <mi>a</mi>
+                                    <mi>0</mi>
+                                </msub>
+                            </math>,
+                            <math>
+                                <msub>
+                                    <mi>a</mi>
+                                    <mi>n</mi>
+                                </msub>
+                            </math> et
+                            <math>
+                                <msub>
+                                    <mi>b</mi>
+                                    <mi>n</mi>
+                                </msub>
+                            </math>
+                            on va pouvoir calculer la série de Fourier et observer pour <math><mi>N</mi></math> en tendant vers <math><mi>+&infin;</mi></math>, la convergence des sommes <math>
+                                <msub>
+                                    <mi>S</mi>
+                                    <mi>N</mi>
+                                </msub>
+                                <mfenced>
+                                    <mi>f</mi>
+                                </mfenced>
+                            </math> vers la fonction <math><mi>f</mi></math>.</p>
+                        
                         <h5 class="title pt-6">Sommes partielles</h5>
                         <p>
-                            La visualisation ci-dessous permet de montrer de façon interactive comment en calculant une série de sommes partielles successivement on converger 
+                            La visualisation ci-dessous permet de montrer de façon interactive comment en calculant une série de sommes partielles successivement on converge 
                             vers la forme du signal sélectionné. Il suffit d'incrémenter la valeur <span class="var">n</span> dans le champ ci-dessous pour améliorer la précision de l'approximation et observer la convergence.
                         </p>
 
-                        <div class="options pt-2">
+                        <div class="options pt-4">
                             <div class="group">
                                 <label>signal</label>
                                 <select name="waveType"></select>
@@ -86,9 +133,34 @@
                     
                     <article class="article">
                         <h5 class="title pt-4">Phénomène de Gibbs</h5>
-                        <p>
+                        <img class="mb-4 mt-2" src="./images/gibbs.png" width="100%" />
+                        <p class="mb-2">
                             La visualisation ci-dessus permet d'observer également le phénomène de Gibbs par exemple avec le signal carré en passant successivement la valeur de <span class="var">n</span> de 5, à 20 puis à 50.
-                            Ces artefacts sont toujours présent au niveaux des discontinuités du signal.
+                            Ces artefacts sont toujours présent au niveaux des discontinuités du signal. 
+                            <br /><br />
+                            A titre d'exemple, la compression JPEG divise une image en blocs et y applique une transformation de Fourier. L'image compressée présente à la suite des transformations une perte d'information qui se traduit par des artefacts sur l'image compressée.
+                            Cela s'explique par le fait qu'on calcule qu'une partie réduite (volontairement) des coefficients de Fourier, ce qui engendre une perte irréversible d'information.
+                        </p>
+                        <div class="imagecomp">
+                            <div class="imagecomp-part">
+                                <figure class="figure mb-4 mt-2">
+                                    <img src="./images/parrots.jpg" alt="Image d'origine" />
+                                    <figcaption>
+                                        Image d'origine
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div class="imagecomp-part">
+                                <figure class="figure mb-4 mt-2">
+                                    <img src="./images/parrots_compressed.jpg" alt="Image compressée" />
+                                    <figcaption>
+                                        Image compressée plusieurs fois
+                                    </figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                        <p>
+                            Le phénomène se retrouve dans toutes les techniques de compression de données basées sur les séries de Fourier (notamment le MP3).
                         </p>
                     </article>
                 </div>
@@ -98,7 +170,107 @@
                 <div class="wrapper">
                     <h4 class="title">#2 Application de la transformée de Fourier</h4>
                     <article class="article">
-                        <p>La transformée de Fourier permet de faire de l'analyse fréquentielle ou spectrale utilisée dans de nombreux domaines.</p>
+                        <p>La transformée de Fourier est utilisée dans de nombreux domaines pour faire de l'analyse fréquentielle ou spectrale.</p>
+                        <p>
+                            On utilise la Transformée de Fourier Rapide qui est un algorithme basé sur la théorie mathématique de la Transformée de Fourier Discrète 
+                            pour calculer une représentation du spectre du signal échantillonné sur un laps de temps donné.
+                        </p>
+                        <div class="mt-4">
+                            <p>Définition de la transformée de Fourier Discrète (FFD) :</p>
+                            <div class="p-1">
+                                <math display="block">
+                                    <mi>S</mi><mfenced><mi>k</mi></mfenced>
+                                    <mo>=</mo>
+                                    <munderover>
+                                        <mo>∑</mo>
+                                        <mrow>
+                                            <mi>n</mi>
+                                            <mo>=</mo>
+                                            <mn>0</mn>
+                                        </mrow>
+                                        <mrow><mi>N</mi><mo>-</mo><mn>1</mn></mrow>
+                                    </munderover>
+                                    <mi>s</mi>
+                                    <mfenced separators="">
+                                        <mi>n</mi>
+                                    </mfenced>
+                                    <mo style="margin: 0 4px;">&sdot;</mo>
+                                    <mrow>
+                                        <msup>
+                                            <mi>e</mi>
+                                            <mrow>
+                                                <mo>-</mo>
+                                                <mn>2</mn>
+                                                <mi>i</mi>
+                                                <mi>&pi;</mi>
+                                                <mi>k</mi>
+                                                <mrow>
+                                                    <mfrac>
+                                                        <mi>n</mi>
+                                                        <mi>N</mi>
+                                                    </mfrac>
+                                                </mrow>
+                                            </mrow>
+                                        </msup>
+                                    </mrow> 
+                                    <mtext style="margin: 0 24px;">
+                                        pour
+                                    </mtext>
+                                    <mrow>
+                                        <mn>0</mn>
+                                        <mo>&le;</mo>
+                                        <mi>k</mi>
+                                        <mo>&lt;</mo>
+                                        <mi>N</mi>
+                                    </mrow>
+                                </math>
+                            </div>
+
+                            <p>et la transformée inverse :</p>
+                            <div class="p-1">
+                                <math display="block">
+                                    <mi>s</mi><mfenced><mi>n</mi></mfenced>
+                                    <mo>=</mo>
+                                    <mrow>
+                                        <mfrac>
+                                            <mi>1</mi>
+                                            <mi>N</mi>
+                                        </mfrac>
+                                    </mrow>
+                                    <munderover>
+                                        <mo>∑</mo>
+                                        <mrow>
+                                            <mi>k</mi>
+                                            <mo>=</mo>
+                                            <mn>0</mn>
+                                        </mrow>
+                                        <mrow><mi>N</mi><mo>-</mo><mn>1</mn></mrow>
+                                    </munderover>
+                                    <mi>S</mi>
+                                    <mfenced separators="">
+                                        <mi>k</mi>
+                                    </mfenced>
+                                    <mo style="margin: 0 4px;">&sdot;</mo>
+                                    <mrow>
+                                        <msup>
+                                            <mi>e</mi>
+                                            <mrow>
+                                                <mn>2</mn>
+                                                <mi>i</mi>
+                                                <mi>&pi;</mi>
+                                                <mi>n</mi>
+                                                <mrow>
+                                                    <mfrac>
+                                                        <mi>k</mi>
+                                                        <mi>N</mi>
+                                                    </mfrac>
+                                                </mrow>
+                                            </mrow>
+                                        </msup>
+                                    </mrow>                                 
+                                </math>
+                            </div>
+                        </div>
                     </article>
                 </div>
                 <div id="sketch2" class="sketch">
